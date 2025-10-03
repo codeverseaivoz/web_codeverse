@@ -1947,22 +1947,22 @@
             const payload = Object.fromEntries(fd.entries());
 
             try {
-            const res = await fetch("http://localhost:3000/api/web_info_users_code", {
+            const res = await fetch("/api/web_info_users_code", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
             });
 
             if (res.ok) {
-                statusEl.textContent = "✅ Datos guardados correctamente en la base de datos";
-                form.reset();
+                statusEl.textContent = "";
+                //form.reset();
             } else {
                 const err = await res.json();
-                statusEl.textContent = "❌ Error: " + (err.error || "No se pudo guardar");
+                statusEl.textContent = "" + (err.error || "No se pudo guardar");
             }
             } catch (err) {
             console.error(err);
-            statusEl.textContent = "❌ Error de conexión con el servidor";
+            statusEl.textContent = "";
             }
         });
     </script>
